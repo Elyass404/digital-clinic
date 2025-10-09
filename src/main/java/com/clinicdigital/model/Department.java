@@ -1,0 +1,47 @@
+package com.clinicdigital.model;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="department")
+public class Department {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private double id;
+
+
+    @Column(nullable = false, unique = true)
+    private String name ;
+
+    //Default Constructor
+    public Department(){};
+
+    public Department(String name){
+        this.name = name;
+    }
+
+    public double getId() {
+        return id;
+    }
+
+    public void setId(double id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
