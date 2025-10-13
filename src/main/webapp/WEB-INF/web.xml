@@ -13,14 +13,14 @@
     </welcome-file-list>
 
     <!-- Department Servlet configuration -->
-    <servlet>
-        <servlet-name>DepartmentServlet</servlet-name>
-        <servlet-class>com.clinicdigital.controller.DepartmentServlet</servlet-class>
-    </servlet>
+<!--    <servlet>-->
+<!--        <servlet-name>DepartmentServlet</servlet-name>-->
+<!--        <servlet-class>com.clinicdigital.controller.DepartmentServlet</servlet-class>-->
+<!--    </servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>DepartmentServlet</servlet-name>
-        <url-pattern>/departments</url-pattern>
-    </servlet-mapping>
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>DepartmentServlet</servlet-name>-->
+<!--        <url-pattern>/departments</url-pattern>-->
+<!--    </servlet-mapping>-->
 
 </web-app>

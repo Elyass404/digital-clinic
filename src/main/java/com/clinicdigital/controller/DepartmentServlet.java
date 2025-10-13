@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(value = "/departments",name = "depart")
+@WebServlet(value = "/departments")
 public class DepartmentServlet extends HttpServlet {
 
     private final  DepartmentRepository repo = new DepartmentRepository();
@@ -23,7 +23,7 @@ public class DepartmentServlet extends HttpServlet {
 
         request.setAttribute("departments",departments);
 
-        request.getRequestDispatcher("src/main/WEB-INF/views/departments.jsp").forward(request,response);
+        request.getRequestDispatcher("webapp/WEB-INF/views/departments.jsp").forward(request,response);
     }
 
     @Override
