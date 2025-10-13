@@ -8,7 +8,7 @@ public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private double id;
+    private int id;
 
 
     @Column(nullable = false, unique = true)
@@ -21,11 +21,11 @@ public class Department {
         this.name = name;
     }
 
-    public double getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(int id) {
         this.id = id;
     }
 
