@@ -5,9 +5,26 @@ import com.clinicdigital.util.JPAUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
+import javax.management.RuntimeOperationsException;
 import java.util.List;
 
 public class DepartmentRepository {
+
+    public Department findDepartmentById(int id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Department department = null;
+
+        try {
+            department = em.find(Department.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+
+        return department;
+    }
+
 
     public void save(Department department){
         EntityManager em = JPAUtil.getEntityManager();
@@ -29,4 +46,39 @@ public class DepartmentRepository {
         EntityManager  em = JPAUtil.getEntityManager();
        return em.createQuery("SELECT d FROM Department d",Department.class).getResultList();
     }
+
+    public void updateDepartment(Department department) {
+        EntityManager em = JPAUtil.getEntityManager();
+
+        try {
+            em.getTransaction().begin();
+            em.merge(department);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
+
+    public void deleteDepartment(int id) {
+        EntityManager em = JPAUtil.getEntityManager();
+
+        try {
+            Department department = em.find(Department.class, id);
+            if (department != null) {
+                em.getTransaction().begin();
+                em.remove(department);
+                em.getTransaction().commit();
+            }
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
+
+
 }

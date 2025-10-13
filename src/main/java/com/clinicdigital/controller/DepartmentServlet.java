@@ -23,7 +23,7 @@ public class DepartmentServlet extends HttpServlet {
 
         request.setAttribute("departments",departments);
 
-        request.getRequestDispatcher("webapp/WEB-INF/views/departments.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/views/departments.jsp").forward(request,response);
     }
 
     @Override
