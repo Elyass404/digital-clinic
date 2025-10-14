@@ -200,6 +200,8 @@
         <form action="${pageContext.request.contextPath}/departments" method="post">
             <!-- Hidden field for department ID -->
             <input type="hidden" name="id" value="${department.id}">
+            <input type="hidden" name="action" value="update">
+
 
             <div class="form-group">
                 <label for="name" class="form-label">Department Name</label>
