@@ -63,7 +63,7 @@ public class RoomServlet extends HttpServlet {
 
         } else if (action.equals("update")) {
             // Update existing room
-            Long id = Long.parseLong(request.getParameter("id"));
+            Long id = Long.parseLong(request.getParameter("idRoom"));
             String name = request.getParameter("name");
             int capacity = Integer.parseInt(request.getParameter("capacity"));
 
