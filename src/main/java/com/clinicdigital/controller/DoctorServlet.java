@@ -1,5 +1,6 @@
 package com.clinicdigital.controller;
 
+import com.clinicdigital.model.Consultation;
 import com.clinicdigital.model.Doctor;
 import com.clinicdigital.model.Department;
 import com.clinicdigital.repository.DoctorRepository;
@@ -36,6 +37,26 @@ public class DoctorServlet extends HttpServlet {
         }
 
         switch (action) {
+
+            case "show": {
+                String idStr = request.getParameter("id");
+                if (idStr != null) {
+                    try {
+                        Long id = Long.parseLong(idStr);
+                        Doctor doctor = doctorRepo.findById(id);
+                        if (doctor != null) {
+                            // Fetch consultations for this doctor
+                            List<Consultation> consultations = doctor.getConsultations(); // Make sure Doctor entity has @OneToMany List<Consultation> consultations
+                            request.setAttribute("doctor", doctor);
+                            request.setAttribute("consultations", consultations);
+                            request.getRequestDispatcher("/WEB-INF/views/doctor_details.jsp").forward(request, response);
+                            return;
+                        }
+                    } catch (NumberFormatException ignored) {}
+                }
+                response.sendRedirect(request.getContextPath() + "/doctors");
+                break;
+            }
 
             case "create": {
                 // Show the page to add a new doctor
