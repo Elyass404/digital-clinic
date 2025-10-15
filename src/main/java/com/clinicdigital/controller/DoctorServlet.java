@@ -28,12 +28,23 @@ public class DoctorServlet extends HttpServlet {
         if (action == null) {
             // List all doctors
             List<Doctor> doctors = doctorRepo.findAll();
+            List<Department> departments = departmentRepo.findAll();
             request.setAttribute("doctors", doctors);
+            request.setAttribute("departments", departments);
             request.getRequestDispatcher("/WEB-INF/views/doctors.jsp").forward(request, response);
             return;
         }
 
         switch (action) {
+
+            case "create": {
+                // Show the page to add a new doctor
+                List<Department> departments = departmentRepo.findAll();
+                request.setAttribute("departments", departments);
+                request.getRequestDispatcher("/WEB-INF/views/create_doctor.jsp").forward(request, response);
+                break;
+            }
+
             case "edit": {
                 String idStr = request.getParameter("id");
                 if (idStr == null) {
@@ -82,11 +93,12 @@ public class DoctorServlet extends HttpServlet {
 
         if (action == null || action.equals("create")) {
             // CREATE doctor
-            String firstname = request.getParameter("firstname");
-            String lastname = request.getParameter("lastname");
+            String firstname = request.getParameter("firstName");
+            String lastname = request.getParameter("lastName");
             String email = request.getParameter("email");
+            String password = request.getParameter("password");
             String speciality = request.getParameter("speciality");
-            String deptIdStr = request.getParameter("department_id");
+            String deptIdStr = request.getParameter("departmentId");
 
             if (firstname == null || lastname == null || deptIdStr == null
                     || firstname.trim().isEmpty() || lastname.trim().isEmpty()) {
@@ -102,6 +114,7 @@ public class DoctorServlet extends HttpServlet {
                     doctor.setFirstName(firstname.trim());
                     doctor.setLastName(lastname.trim());
                     doctor.setEmail(email != null ? email.trim() : "");
+                    doctor.setPassword(password != null ? password.trim() : "");
                     doctor.setSpecialty(speciality != null ? speciality.trim() : "");
                     doctor.setDepartment(department);
                     doctorRepo.save(doctor);

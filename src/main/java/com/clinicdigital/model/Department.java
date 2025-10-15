@@ -2,6 +2,9 @@ package com.clinicdigital.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="department")
 public class Department {
@@ -13,6 +16,9 @@ public class Department {
 
     @Column(nullable = false, unique = true)
     private String name ;
+
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Doctor> doctors = new ArrayList<>();
 
     //Default Constructor
     public Department(){};

@@ -22,11 +22,11 @@ public class Doctor {
     private String email;
 
     @Column(nullable = false)
-    private String password; // store hashed password in real app
+    private String password;
 
     private String specialty;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "department_id", nullable = false)
     private Department department;
 
