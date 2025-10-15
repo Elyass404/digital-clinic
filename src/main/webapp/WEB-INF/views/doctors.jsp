@@ -50,7 +50,7 @@
                     <td><%= doctor.getSpecialty() %></td>
                     <td><%= doctor.getDepartment() != null ? doctor.getDepartment().getName() : "hello" %></td>
                     <td>
-                        <a href="DoctorServlet?action=show&id=<%= doctor.getId() %>" class="btn btn-info btn-sm me-1">Show</a>
+                        <a href="${pageContext.request.contextPath}/doctors?action=show&id=<%= doctor.getId() %>" class="btn btn-info btn-sm me-1">Show</a>
                         <a href="DoctorServlet?action=edit&id=<%= doctor.getId() %>" class="btn btn-warning btn-sm me-1">Edit</a>
                         <a href="DoctorServlet?action=delete&id=<%= doctor.getId() %>"
                            class="btn btn-danger btn-sm"
