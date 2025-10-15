@@ -51,8 +51,8 @@
                     <td><%= doctor.getDepartment() != null ? doctor.getDepartment().getName() : "hello" %></td>
                     <td>
                         <a href="${pageContext.request.contextPath}/doctors?action=show&id=<%= doctor.getId() %>" class="btn btn-info btn-sm me-1">Show</a>
-                        <a href="DoctorServlet?action=edit&id=<%= doctor.getId() %>" class="btn btn-warning btn-sm me-1">Edit</a>
-                        <a href="DoctorServlet?action=delete&id=<%= doctor.getId() %>"
+                        <a href="${pageContext.request.contextPath}/doctors?action=edit&id=<%= doctor.getId() %>" class="btn btn-warning btn-sm me-1">Edit</a>
+                        <a href="${pageContext.request.contextPath}/doctors?action=delete&id=<%= doctor.getId() %>"
                            class="btn btn-danger btn-sm"
                            onclick="return confirm('Are you sure you want to delete this doctor?');">Delete</a>
                     </td>
