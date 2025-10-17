@@ -26,6 +26,14 @@
     </properties>
 
     <dependencies>
+        <!-- Bcrypt library for hashing the pasword -->
+
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
+
         <!-- Jakarta EE API (Servlet, JSP, etc.) -->
         <dependency>
             <groupId>jakarta.platform</groupId>
