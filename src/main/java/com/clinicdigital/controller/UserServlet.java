@@ -20,7 +20,7 @@ public class UserServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action == null) {
-            response.sendRedirect("login.jsp");
+            request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
             return;
         }
 
@@ -28,10 +28,10 @@ public class UserServlet extends HttpServlet {
             case "logout" -> {
                 HttpSession session = request.getSession(false);
                 if (session != null) session.invalidate();
-                response.sendRedirect("login.jsp");
+                request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
             }
             case "register" -> request.getRequestDispatcher("/WEB-INF/views/register.jsp").forward(request, response);
-            default -> response.sendRedirect("login.jsp");
+            default -> request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
         }
     }
 
@@ -44,7 +44,7 @@ public class UserServlet extends HttpServlet {
         switch (action) {
             case "login" -> handleLogin(request, response);
             case "register" -> handleRegister(request, response);
-            default -> response.sendRedirect("login.jsp");
+            default -> request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
         }
     }
 
@@ -65,7 +65,7 @@ public class UserServlet extends HttpServlet {
                 case ADMIN -> response.sendRedirect("admin-dashboard.jsp");
                 case DOCTOR -> response.sendRedirect("doctor-dashboard.jsp");
                 case PATIENT -> response.sendRedirect("patient-dashboard.jsp");
-                default -> response.sendRedirect("login.jsp");
+                default -> request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
             }
         } else {
             request.setAttribute("error", "Invalid email or password!");
@@ -99,7 +99,7 @@ public class UserServlet extends HttpServlet {
         boolean isRegistered = userService.register(user);
 
         if (isRegistered) {
-            response.sendRedirect("login.jsp");
+            request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
         } else {
             request.setAttribute("error", "Email already exists or registration failed.");
             request.getRequestDispatcher("/WEB-INF/views/register.jsp").forward(request, response);
