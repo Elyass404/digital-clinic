@@ -24,7 +24,6 @@ public class UserService implements UserServiceInterface {
         return repo.register(user);
     }
 
-    
     private String hashPassword (String passwordToBeHashed){
         return BCrypt.hashpw(passwordToBeHashed, BCrypt.gensalt(12));
     }
